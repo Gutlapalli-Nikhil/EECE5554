@@ -8,7 +8,7 @@
 
 ### 3) catkin_make
 
-### 4) source devel/setub.bash
+### 4) source devel/setup.bash
 
 ### 5) In terminal 1, run "roscore"
 
