@@ -1,0 +1,5 @@
+<launch>
+	<arg name="port"/>
+	<node pkg="gps_driver" type="driver.py" name="driver" output="screen" args="$(arg port)">
+	</node>
+</launch>
