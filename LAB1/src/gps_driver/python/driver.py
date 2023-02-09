@@ -14,9 +14,9 @@ def transforms_gpgga_to_utm(latitude, longitude):
 def talker():
 	rospy.init_node('driver')
 	
-	args = rospy.myargv(argv=sys.argv)
+	serial_port = rospy.get_param('/port', '/dev/ttyUSB0')
 	
-	serial_port = args[1]
+	# serial_port = args[1]
 	
 	port = serial.Serial(serial_port, 4800)
 	
