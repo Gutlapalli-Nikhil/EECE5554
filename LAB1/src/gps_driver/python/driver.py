@@ -41,7 +41,7 @@ def talker():
 	
 	rate = rospy.Rate(10)
 	
-	gps_msgs.header.frame_id = "GPS1_Frame"
+	gps_msgs.Header.frame_id = "GPS1_Frame"
 
 
 	method = "txty"
@@ -57,8 +57,8 @@ def talker():
 
 		if(parts[0] == "$GPGGA"):
 			print(parts)
-			gps_msgs.header.stamp.secs = int(parts[1][:6])
-			gps_msgs.header.stamp.nsecs = int(parts[1][7:])
+			gps_msgs.Header.stamp.secs = int(parts[1][:6])
+			gps_msgs.Header.stamp.nsecs = int(parts[1][7:])
 			
 			lat_str = parts[2]
 			lon_str = parts[4]
