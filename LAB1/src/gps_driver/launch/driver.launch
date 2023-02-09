@@ -1,5 +1,6 @@
 <launch>
 	<arg name="port"/>
-	<node pkg="gps_driver" type="driver.py" name="driver" output="screen" args="$(arg port)">
+	<param name="port" value="$(arg port)" />
+	<node pkg="gps_driver" type="driver.py" name="driver" output="screen">
 	</node>
 </launch>
