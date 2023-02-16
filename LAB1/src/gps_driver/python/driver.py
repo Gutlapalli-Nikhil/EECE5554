@@ -55,7 +55,8 @@ def talker():
 
 		parts = output.split(",")
 
-		if(parts[0] == "$GPGGA"):
+		#if(parts[0] == "$GPGGA"):	#### When I use GPS, my first index is "$GPGGA". But when I used serial emulator, my first index is "\r$GPGGA"
+		if "GPGGA" in output:		#### Replaced the previous line.
 			print(parts)
 			gps_msgs.Header.stamp.secs = int(parts[1][:6])
 			gps_msgs.Header.stamp.nsecs = int(parts[1][7:])
