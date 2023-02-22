@@ -4,7 +4,11 @@ import sys
 import serial
 from gnss_driver.msg import gnss_msgs as GPS
 
-
+def transforms_gpgga_to_utm(latitude, longitude):
+	
+	(utm_easting, utm_northing, zone_number, zone_letter) = utm.from_latlon(latitude, longitude)
+	
+	return utm_easting, utm_northing, zone_number, zone_letter
 
 def talker():
 	rospy.init_node('driver')
