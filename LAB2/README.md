@@ -1,4 +1,4 @@
-# LAB 1 Assignment
+# LAB 2 Assignment
 
 
 ## Steps to run
