@@ -1,0 +1,6 @@
+<launch>
+<arg name="port"/>
+<node name="gnss_driver" pkg="gnss_driver" type="driver.py" args="$(arg port)" output="screen">
+
+</node>
+</launch>
