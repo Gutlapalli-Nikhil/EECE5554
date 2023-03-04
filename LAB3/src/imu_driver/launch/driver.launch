@@ -3,4 +3,6 @@
 	<param name="port" value="$(arg port)" />
 	<node pkg="imu_driver" type="driver.py" name="driver" output="screen">
 	</node>
+	<node pkg="imu_driver" type="server.py" name="eigan_to_quaternion_server" output="screen">
+	</node>
 </launch>

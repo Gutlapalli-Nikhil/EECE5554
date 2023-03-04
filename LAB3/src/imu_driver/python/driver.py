@@ -29,9 +29,8 @@ def talker():
 		data = port.readline()
 		
 		output = data.decode('latin-1')
-
 		if "VNYMR" in output:
-
+					print(output)
 					parts = output.split(",")
 					
 					now = time.time()
