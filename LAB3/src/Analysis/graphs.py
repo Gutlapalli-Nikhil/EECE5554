@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 
 
-bag = rosbag.Bag("testing_nikhil_imu.bag")
+bag = rosbag.Bag("/home/nikhil/Downloads/LAB_Structure_Checker/Structure_Checker/EECE5554/LAB3/src/Data/stationary_nikhil.bag")
 
 
 
@@ -27,8 +27,7 @@ accel_z = []
 
 
 for topic, msg, t in bag.read_messages(topics=['/imu']):
-    print(msg)
-    exit()
+
     w = msg.imu.orientation.w
     x = msg.imu.orientation.x
     y = msg.imu.orientation.y
@@ -45,31 +44,11 @@ fig, axs = plt.subplots()
 axs.plot(gyro_x, label='Roll')
 axs.plot(gyro_y, label='Pitch')
 axs.plot(gyro_z, label='Yaw')
-axs.set_title('Gyro')
-axs.set_xlabel('Time in seconds')
-axs.set_ylabel('Gyro (radians/s)')
-axs.legend()
-# plt.show()
-
-
-
-
-for topic, msg, t in bag.read_messages(topics=['/imu']):
-    orientation_x.append(msg.imu.orientation.x)
-    orientation_y.append(msg.imu.orientation.y)
-    orientation_z.append(msg.imu.orientation.z)
-
-fig, axs = plt.subplots()
-axs.plot(orientation_x, label='x')
-axs.plot(orientation_y, label='y')
-axs.plot(orientation_z, label='z')
 axs.set_title('Orientation')
-axs.set_xlabel('Time')
-axs.set_ylabel('Orientation in radians')
+axs.set_xlabel('Time in seconds')
+axs.set_ylabel('Orientation in Euler angles (radians)')
 axs.legend()
-# plt.show()
-
-
+plt.show()
 
 for topic, msg, t in bag.read_messages(topics=['/imu']):
     accel_x.append(msg.imu.linear_acceleration.x)
@@ -84,7 +63,23 @@ axs.set_title('Acceleration')
 axs.set_xlabel('Time')
 axs.set_ylabel('Acceleration (m/s^2)')
 axs.legend()
-# plt.show()
+plt.show()
+
+for topic, msg, t in bag.read_messages(topics=['/imu']):
+
+    gyro_x.append(msg.imu.angular_velocity.x)
+    gyro_y.append(msg.imu.angular_velocity.y)
+    gyro_z.append(msg.imu.angular_velocity.z)
+
+fig, axs = plt.subplots()
+axs.plot(gyro_x, label='x')
+axs.plot(gyro_y, label='y')
+axs.plot(gyro_z, label='z')
+axs.set_title('Gyro')
+axs.set_xlabel('Time')
+axs.set_ylabel('Gyro in rad/sec')
+axs.legend()
+plt.show()
 
 
 accel_x = []
@@ -93,11 +88,16 @@ for topic, msg, t in bag.read_messages(topics=['/imu']):
 
 mean = np.mean(accel_x)
 median = np.median(accel_x)
-
+std_dev = np.std(accel_x)
+print(mean)
+print(median)
+print(std_dev)
 fig, axs = plt.subplots()
 axs.hist(accel_x, bins=20)
 axs.axvline(mean, color='red', label='Mean')
 axs.axvline(median, color='green', label='Median')
+axs.axvline(mean+std_dev, color='orange', linestyle='--', label='+1 SD')
+axs.axvline(mean-std_dev, color='orange', linestyle='--', label='-1 SD')
 axs.set_title('Acceleration X-axis')
 axs.set_xlabel('Acceleration (m/s^2)')
 axs.set_ylabel('Frequency')
