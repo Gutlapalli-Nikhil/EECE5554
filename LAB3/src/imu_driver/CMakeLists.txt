@@ -163,7 +163,6 @@ include_directories(
 catkin_install_python(PROGRAMS
   python/driver.py
   python/server.py
-  python/client.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
